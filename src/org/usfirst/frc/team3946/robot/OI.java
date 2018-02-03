@@ -10,9 +10,9 @@ package org.usfirst.frc.team3946.robot;
 import org.usfirst.frc.team3946.robot.commands.Launch;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,15 +20,18 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	
-	public Joystick leftJoystick = new Joystick(0);
-	public Joystick rightJoystick = new Joystick(1);
-	public XboxController xboxController = new XboxController(2);
+	public Joystick leftStick = new Joystick(0);
+	public Joystick rightStick = new Joystick(1);
 	
-	Button shootButton = new JoystickButton(leftJoystick, 2);
+	public Button shootButton = new JoystickButton(leftStick, 2);
+	
+	Command shootCommand;
 	
 	public OI() {
 		
-		shootButton.whenPressed(new Launch());
+		shootCommand = new Launch();
+		shootButton.whenPressed(shootCommand);
 		
 	}
+	
 }
